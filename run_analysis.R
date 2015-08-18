@@ -1,8 +1,6 @@
 # Full code to Peer project of Getting and Cleaning Data
 
-# Download data and expand file in temp directory
-setwd('/tmp')
-
+# The program will execute in current working directory
 # Download the zip_file....
 if(!file.exists('peer_exercise.zip')){
     fileURL <- download.file('http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip',
@@ -51,8 +49,10 @@ train <- join.tables('train/subject_train.txt','train/X_train.txt','train/y_trai
 # We joined them together as originally asked
 tidy.data <- rbind(test,train)
 
-# To perform exercise 5 ("pivoting"), I'm using reshape
+# Return to initial working directory
+setwd('..')
 
+# To perform exercise 5 ("pivoting"), I'm using reshape
 library(reshape2)
 
 # First define my dimension variables and my measurement variable of interest
@@ -61,7 +61,5 @@ data.melt <- melt(tidy.data,id=c('subject','activity'),measure.vars=c('mean'))
 # And now calculate the "mean of mean", for each subject and activity type
 tidy.data.2 <- dcast(data.melt, subject+activity ~ variable,mean)
 
-# We're good to save it
-write.table(tidy.data.2,'/tmp/tidy.data.2.txt',quote=F,row.names=FALSE)
-
-# That's all, folks
+# We're good to save it :
+write.table(tidy.data.2,'tidy.data.2.txt',quote=F,row.names=FALSE)
