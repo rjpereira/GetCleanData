@@ -13,4 +13,6 @@ the measurements of that activity type that were present on the original data fi
 Available on the script, but not exported, you can also access tidy.data data frame which contains the mean and 
 standard deviation of each measurement of each individual during a particular activity type.
 
+For more explanations about the steps and transformations used in the script, please refer to comments on the source file.
+
 For more information refer to file "UCI HAR Dataset/README.txt" of the raw data zip file.
